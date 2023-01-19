@@ -7,6 +7,25 @@
  * @version: 2022-2023
  */
 
-public class Student {
+public class Student extends Person{
+    public int grade;
     // TODO: Modify and complete this class
+    public Student(String firstName, String lastName, String phoneNumber, int grade)
+    {
+        super(firstName,lastName, phoneNumber);
+        this.grade = grade;
+    }
+    public int getGrade()
+    {
+        return grade;
+    }
+
+    public void setGrade(int grade) {
+        this.grade = grade;
+    }
+
+    @Override
+    public String toString() {
+        return super.firstName + super.lastName + " - " + "#" + super.phoneNumber + "Grade" + ": " + getGrade() ;
+    }
 }

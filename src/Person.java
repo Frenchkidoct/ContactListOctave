@@ -44,6 +44,10 @@ public class Person {
         this.phoneNumber = phoneNumber;
     }
    //toString to do
+    public String toString()
+    {
+        return getFirstName() + getLastName() + "- " + "#" + getPhoneNumber();
+    }
 }
 
 
