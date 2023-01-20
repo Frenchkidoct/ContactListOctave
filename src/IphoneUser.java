@@ -1,7 +1,7 @@
-public class Iphone extends Person{
+public class IphoneUser extends Person{
     public boolean hasIphone;
 
-    public Iphone(String firstName, String lastName, String phoneNumber, boolean hasIphone)
+    public IphoneUser(String firstName, String lastName, String phoneNumber, boolean hasIphone)
     {
         super(firstName,lastName, phoneNumber);
         this.hasIphone = hasIphone;
