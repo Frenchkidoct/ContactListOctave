@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 /**
@@ -17,7 +18,6 @@ public class ContactList
     ArrayList<Person> contacts;
 
 
-    // TODO: Write a Constructor
     public ContactList()
     {
         contacts = new ArrayList<Person>();
@@ -42,15 +42,59 @@ public class ContactList
      * to the contact list
      */
     public void addContact() {
-        // TODO: Complete the addContact method
+        System.out.println("Select a type of contact to add: ");
+        System.out.println("1. Student");
+        System.out.println("2. IphoneUser");
+        Scanner input = new Scanner(System.in);
+        int choice = input.nextInt();
+        input.nextLine();
+
+        System.out.println("Please fill in the following information");
+        //save and add to the constructor
+        System.out.println("First Name:");
+        String fName = input.nextLine();
+        //save and add to the constructor
+        System.out.println("Last Name:");
+        String lName = input.nextLine();
+        //save and add to the constructor
+        System.out.println("Phone Number:");
+        String number = input.nextLine();
+        //save and add to the constructor
+
+        if(choice == 1)
+        {
+            System.out.println("Grade:");
+            int grade = input.nextInt();
+            input.nextLine();
+
+            Student s = new Student(fName, lName, number, grade);
+            contacts.add(s);
+
+
+        }
+        if(choice == 2)
+        {
+            System.out.println("Has an Iphone (y/n): ");
+            boolean iphone = input.nextLine().equalsIgnoreCase("Y");
+            contacts.add(new IphoneUser(fName, lName, number, iphone));
+
+        }
+
+
+
 
     }
 
     /**
      * Loops through and prints all contacts
      */
-    public void printContacts() {
+    public void printContacts()
+    {
         // TODO: Complete the printContacts method
+        for(int i = 0; i < contacts.size(); i++)
+        {
+            System.out.println(contacts.get(i));
+        }
     }
 
     /**
@@ -71,8 +115,16 @@ public class ContactList
     /**
      * Lists just the Student objects in the Contact List
      */
-    public void listStudents() {
-        // TODO: Complete the listStudents method
+    public void listStudents()
+    {
+        for(int i = 0; i < contacts.size(); i++)
+        {
+            Person p = contacts.get(i);
+            if(p instanceof Student)
+            {
+                System.out.println(p);
+            }
+        }
     }
 
     /**
@@ -96,6 +148,13 @@ public class ContactList
             {
                 case 0: return;
                 case 1: this.addContact();
+                        break;
+                case 2: this.printContacts();
+                        break;
+                case 3: this.sort(1);
+                        printContacts();
+                        break;
+                case 5: this.listStudents();
                         break;
             }
             printMenuOptions();
