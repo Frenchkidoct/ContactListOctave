@@ -102,11 +102,36 @@ public class ContactList
      * lastName, or phoneNumber
      * @param sortBy: 0=firstName, 1=lastName, 2=phoneNumber
      */
-    public void sort(int sortBy) {
+    public void sort(int sortBy)
+    {
         // TODO: Complete the sort method
+        int n = contacts.size();
+
+        for(int pass = 1; pass < n; pass++)
+        {
+            for(int comp = 0; comp < n-pass; comp++) {
+                if (sortBy == 0)
+                {
+                    String F1 = contacts.get(comp).getFirstName();
+                    String F2 = contacts.get(comp + 1).getFirstName();
+                    if (F1.compareTo(F2) > 0)
+                    {
+                        Person temp = contacts.get(comp);
+                        contacts.set(comp, contacts.get(comp + 1));
+                        contacts.set(comp + 1, temp);
+                    }
+                }
+            }
+        }
+
+
     }
 
     // TODO: Write searchByFirstName
+    public void searchByFirstName()
+    {
+
+    }
 
     // TODO: Write searchByLastName
 
@@ -156,6 +181,10 @@ public class ContactList
                         break;
                 case 5: this.listStudents();
                         break;
+                case 6: this.searchByFirstName();
+                case 7: this.searchByLastName();
+                case 8: this.searchByPhoneNumber();
+
             }
             printMenuOptions();
             System.out.println("Enter a number");
