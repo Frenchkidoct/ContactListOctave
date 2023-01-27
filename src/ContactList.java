@@ -18,8 +18,10 @@ public class ContactList
     ArrayList<Person> contacts;
 
 
+
     public ContactList()
     {
+        //constructor to initialize the contacts array list
         contacts = new ArrayList<Person>();
     }
 
@@ -49,6 +51,7 @@ public class ContactList
         int choice = input.nextInt();
         input.nextLine();
 
+        //This prompts the user to enter what they want.
         System.out.println("Please fill in the following information");
         //save and add to the constructor
         System.out.println("First Name:");
@@ -61,6 +64,7 @@ public class ContactList
         String number = input.nextLine();
         //save and add to the constructor
 
+        // Both Iphone user and students have the same attributes except for grade and has an iphone which is added here
         if(choice == 1)
         {
             System.out.println("Grade:");
@@ -93,6 +97,7 @@ public class ContactList
         // TODO: Complete the printContacts method
         for(int i = 0; i < contacts.size(); i++)
         {
+            //get all the contacts in for loop and print them
             System.out.println(contacts.get(i));
         }
     }
@@ -107,9 +112,11 @@ public class ContactList
         // TODO: Complete the sort method
         int n = contacts.size();
 
+        //You need to do 1 less pass than the size of array list. hence pass < n
         for(int pass = 1; pass < n; pass++)
         {
             for(int comp = 0; comp < n-pass; comp++) {
+                //if user picks 0, do first name
                 if (sortBy == 0)
                 {
                     String F1 = contacts.get(comp).getFirstName();
@@ -121,21 +128,76 @@ public class ContactList
                         contacts.set(comp + 1, temp);
                     }
                 }
+                //if user picks 1, do last name
+                else if(sortBy == 1)
+                {
+                    String LF1 = contacts.get(comp).getLastName();
+                    String LF2 = contacts.get(comp + 1).getLastName();
+                    if (LF1.compareTo(LF2) > 0)
+                    {
+                        Person temp = contacts.get(comp);
+                        contacts.set(comp, contacts.get(comp + 1));
+                        contacts.set(comp + 1, temp);
+                    }
+                }
+                //if user picks 2, do phone number
+                else if(sortBy == 2)
+                {
+                    String PN1 = contacts.get(comp).getPhoneNumber();
+                    String PN2 = contacts.get(comp + 1).getPhoneNumber();
+                    if (PN1.compareTo(PN2) > 0)
+                    {
+                        Person temp = contacts.get(comp);
+                        contacts.set(comp, contacts.get(comp + 1));
+                        contacts.set(comp + 1, temp);
+                    }
+                }
+
             }
         }
 
 
     }
 
-    // TODO: Write searchByFirstName
-    public void searchByFirstName()
+    // TODO: Write searchByFirstName`
+    public Person searchByFirstName(String firstName)
     {
-
+        for(Person fName : contacts)
+        {
+            if(fName.getFirstName().equals(firstName));
+            {
+                return fName;
+            }
+        }
+        return null;
     }
 
-    // TODO: Write searchByLastName
+    // TODO: Write
+    public Person searchByLastName(String lastName)
+    {
+        for(Person lName : contacts)
+        {
+            if(lName.getLastName().equals(lastName))
+            {
+                return lName;
+            }
+        }
+        return null;
+    }
+
 
     // TODO: Write searchByPhoneNumber
+    public Person searchByPhoneNumber(String phoneNumber)
+    {
+        for(Person pNumber : contacts)
+        {
+            if(pNumber.getPhoneNumber().equals(phoneNumber))
+            {
+                return pNumber;
+            }
+        }
+        return null;
+    }
 
     /**
      * Lists just the Student objects in the Contact List
@@ -181,9 +243,6 @@ public class ContactList
                         break;
                 case 5: this.listStudents();
                         break;
-                case 6: this.searchByFirstName();
-                case 7: this.searchByLastName();
-                case 8: this.searchByPhoneNumber();
 
             }
             printMenuOptions();

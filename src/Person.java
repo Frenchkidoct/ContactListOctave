@@ -8,7 +8,6 @@
  */
 
 public class Person {
-    // TODO: Complete the Person class
     public String firstName;
     public String lastName;
     public String phoneNumber;

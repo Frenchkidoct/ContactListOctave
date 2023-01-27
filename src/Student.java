@@ -9,7 +9,6 @@
 
 public class Student extends Person{
     public int grade;
-    // TODO: Modify and complete this class
     public Student(String firstName, String lastName, String phoneNumber, int grade)
     {
         super(firstName,lastName, phoneNumber);
